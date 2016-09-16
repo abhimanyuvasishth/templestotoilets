@@ -1,10 +1,12 @@
+//***We can remove the background entirely since the chrommunist manifesto says that we run at doc end***/
+
 //this will only run once the extension is loaded the first time
 console.log("Running background now!");
-
 var count = 1;
 
 // This listener is called when a tab becomes active
 // in a window (e.g. the user clicks on the tab icon)
+
 chrome.tabs.onActivated.addListener(function(details) {
 	count = count + 1;
 	var test_var = "bg_message";
@@ -20,5 +22,4 @@ chrome.tabs.onActivated.addListener(function(details) {
 	});
 
 	//chrome.pageAction.show(tabId);
-	});
-
+});
