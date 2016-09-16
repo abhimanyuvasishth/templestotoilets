@@ -32,10 +32,10 @@ function walk(rootNode){
 }	
 
 function replaceText(v){
-	v = v.replace("cat","dog");
-	v = v.replace("Cat","Dog");
-	v = v.replace("Cats","Dogs");
-	v = v.replace("cats","dogs");
+	v = v.replace("temple","toilet");
+    v = v.replace("Temple","Toilet");
+    v = v.replace("temples","toilets");
+    v = v.replace("Temples","Toilets");
 	return v;
 }
 
