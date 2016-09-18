@@ -32,7 +32,7 @@ function walk(rootNode){
 
 function replaceText(v){
 	v = v.replace("temple","toilet");
-    v = v.replace(/(H|h)ome/,"homeless");
+    v = v.replace("Home","homeless");
     v = v.replace("Temple","Toilet");
     v = v.replace("temples","toilets");
     v = v.replace("Temples","Toilets");
