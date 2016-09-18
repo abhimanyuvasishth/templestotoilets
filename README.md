@@ -12,4 +12,6 @@ privacy -> exposed
 
 weather -> global warming/climate change
 
-ads -> theft/capitalism
+ads -> obey
+
+help -> 
