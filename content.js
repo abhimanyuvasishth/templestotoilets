@@ -31,6 +31,7 @@ function walk(rootNode){
 }	
 
 function replaceText(v){
+    // Can replace this stuff with regex later
 	v = v.replace("temple","toilet");
     v = v.replace("Home","homeless");
     v = v.replace("Temple","Toilet");
@@ -46,7 +47,13 @@ var observer = new MutationObserver(function(mutations){
     });
 });
 
-observer.observe(document.body,{attributes:true,childList:true,characterData:true});
+var config = {
+    attributes: true,
+    childList: true,
+    characterData: true,
+    subtree: true
+}
 
 // This is based on the millennials to snake people chrome extension
-walk(document.body);
+// Look here for more help: https://developer.mozilla.org/en/docs/Web/API/MutationObserver
+observer.observe(document.body,config);
