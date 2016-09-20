@@ -30,14 +30,14 @@ function walk(rootNode){
     }
 }	
 
-function replaceText(v){
+function replaceText(text){
     // Can replace this stuff with regex later
-	v = v.replace("temple","toilet");
-    v = v.replace("Home","homeless");
-    v = v.replace("Temple","Toilet");
-    v = v.replace("temples","toilets");
-    v = v.replace("Temples","Toilets");
-	return v;
+	text = text.replace("temple","toilet");
+    text = text.replace("Home","homeless");
+    text = text.replace("Temple","Toilet");
+    text = text.replace("temples","toilets");
+    text = text.replace("Temples","Toilets");
+	return text;
 }
 
 var observer = new MutationObserver(function(mutations){
