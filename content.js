@@ -64,9 +64,13 @@ function replaceText(text){
     text = text.replace(/\bweather\b/g, "climate change"); 
 
     // Ads/Adverts/Advertisements -> Obey
-    text = text.replace(/\b(ADS|ADVERTS|ADVERTISEMENTS)\b/g, "OBEY");    
-    text = text.replace(/\b(Ads|Adverts|Advertisements)\b/g, "Obey");    
-    text = text.replace(/\b(ads|adverts|advertisements)\b/g, "obey"); 
+    text = text.replace(/\b(AD(S|s)?|ADVERT(S|s)?|ADVERTISEMENT(S|s)?)\b/g, "OBEY");    
+    text = text.replace(/\b(Ad(s)?|Advert(s)?|Advertisement(s)?)\b/g, "Obey");    
+    text = text.replace(/\b(ad(s)?|advert(s)?|advertisement(s)?)\b/g, "obey"); 
+
+    text = text.replace(/\bADVERTISING\b/g, "COERCING"); 
+    text = text.replace(/\bAdvertising\b/g, "Coercing");
+    text = text.replace(/\badvertising\b/g, "coercing");
 
 	return text;
 }
