@@ -23,7 +23,6 @@ function walk(rootNode){
         false
     ),
     node;
-
     // Modify each text node's value
     while (node = walker.nextNode()) {
     	node.nodeValue = replaceText(node.nodeValue);
@@ -88,4 +87,5 @@ var config = {
 
 // This is based on the millennials to snake people chrome extension
 // Look here for more help: https://developer.mozilla.org/en/docs/Web/API/MutationObserver
+walk(document.body);
 observer.observe(document.body,config);
