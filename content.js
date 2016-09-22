@@ -32,17 +32,24 @@ function walk(rootNode){
 
 function replaceText(text){
     // Can replace this stuff with regex later
-	text = text.replace("temple","toilet");
-    text = text.replace("Home","homeless");
-    text = text.replace("Temple","Toilet");
-    text = text.replace("temples","toilets");
-    text = text.replace("Temples","Toilets");
+
+    // Temple -> Toilet
+    // text = text.replace(/\bTemple(s)?\b/g, "<a href='http://www.cricinfo.com'>Toilet$1</a>");
+    text = text.replace(/\bTemple(s)?\b/g, "Toilet$1");
+    text = text.replace(/\btemple(s)?\b/g, "toilet$1");
+    text = text.replace(/\bTEMPLE(S)?\b/g, "TOILET$1");
+
+    // Home -> Homeless
+    text = text.replace(/\bHOME(SCREEN|PAGE)?\b/g, "HOMELESS$1");    
+    text = text.replace(/\bHome(screen|page)?\b/g, "Homeless$1");    
+    text = text.replace(/\bhome(screen|page)?\b/g, "homeless$1");    
+
 	return text;
 }
 
 var observer = new MutationObserver(function(mutations){
     mutations.forEach(function(mutation){
-        console.log(mutation.type);
+        // console.log(mutation.type);
         walk(document.body);
     });
 });
