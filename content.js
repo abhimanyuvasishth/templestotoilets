@@ -44,6 +44,31 @@ function replaceText(text){
     text = text.replace(/\bHome(screen|page)?\b/g, "Homeless$1");    
     text = text.replace(/\bhome(screen|page)?\b/g, "homeless$1");    
 
+    // Jobs or Careers -> Unemployment
+    text = text.replace(/\bJOB(S)?\b/g, "UNEMPLOYMENT");    
+    text = text.replace(/\bCAREER(S)?\b/g, "UNEMPLOYMENT");    
+
+    text = text.replace(/\bJob(s)?\b/g, "Unemployment");    
+    text = text.replace(/\bCareer(s)?\b/g, "Unemployent");    
+    
+    text = text.replace(/\bjob(s)?\b/g, "unemployment");    
+    text = text.replace(/\bcareer(s)?\b/g, "unemployment");    
+
+    // Privacy -> Exposed
+    text = text.replace(/\bPRIVACY\b/g, "EXPOSED");    
+    text = text.replace(/\bPrivacy\b/g, "Exposed");    
+    text = text.replace(/\bprivacy\b/g, "exposed");        
+
+    // Weather -> Climate Change
+    text = text.replace(/\bWEATHER\b/g, "CLIMATE CHANGE");    
+    text = text.replace(/\bWeather\b/g, "Climate Change");    
+    text = text.replace(/\bweather\b/g, "climate change"); 
+
+    // Ads/Adverts/Advertisements -> Obey
+    text = text.replace(/\b(ADS|ADVERTS|ADVERTISEMENTS)\b/g, "OBEY");    
+    text = text.replace(/\b(Ads|Adverts|Advertisements)\b/g, "Obey");    
+    text = text.replace(/\b(ads|adverts|advertisements)\b/g, "obey"); 
+
 	return text;
 }
 
