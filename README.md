@@ -1,6 +1,6 @@
 # templestotoilets
 
-Word ideas and articles
+Word ideas and articles for our project
 
 temple -> toilet
 1. http://timesofindia.indiatimes.com/india/Build-toilets-first-and-temples-later-Narendra-Modi-says/articleshow/23422631.cms
