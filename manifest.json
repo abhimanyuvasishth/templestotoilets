@@ -1,5 +1,5 @@
 {
-	"name": "name_holder",
+	"name": "Temples to Toilets",
 	"manifest_version": 2,
 	"version": "1.0.0",
 
@@ -15,6 +15,14 @@
 		"js": ["content.js"]
 	}],
 
-	"permissions": ["tabs"]
+	"permissions": ["tabs"],
 
+	"icons": {
+
+  	},
+
+  	"browser_action":{
+    	"name":"Temples to Toilets",
+    	"default_title": "Temples to Toilets"
+  }
 }
