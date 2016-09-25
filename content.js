@@ -1,16 +1,5 @@
 console.log("Working on here");
 
-//when tab is active, this is received (form background.js) in its console
-// chrome.runtime.onMessage.addListener(
-// 	function(request, sender, sendResponse) {
-// 		console.log(request.count);
-// 		if (request.test == "bg_message") {
-// 			console.log("got it!")
-// 			//call replace text function here
-// 			sendResponse({type: "I got your message"});
-// 		}
-// });
-
 function walk(rootNode){
     // First replace the text of the title
     document.title = replaceText(document.title);
@@ -30,8 +19,6 @@ function walk(rootNode){
 }	
 
 function replaceText(text){
-    // Can replace this stuff with regex later
-
     // Temple -> Toilet
     // text = text.replace(/\bTemple(s)?\b/g, "<a href='http://www.cricinfo.com'>Toilet$1</a>");
     text = text.replace(/\bTemple(s)?\b/g, "Toilet$1");
@@ -78,6 +65,9 @@ function replaceText(text){
 var observer = new MutationObserver(function(mutations){
     mutations.forEach(function(mutation){
         // console.log(mutation.type);
+        for (var i = 0; i < arrayOfWords.length; i++){
+           findWords(arrayOfWords[i], arrayOfLinks[i]);
+        }        
         walk(document.body);
     });
 });
@@ -89,7 +79,72 @@ var config = {
     subtree: true
 }
 
+// don't replace text within these tags
+var arrayOfWords = ["Temple", "Home", "Weather", "Privacy", "Careers"];
+var mainUrl = "http://139.59.22.162/";
+var arrayOfLinks = [mainUrl, mainUrl + "responses/home", mainUrl + "responses/home", mainUrl + "responses/week1",
+                    mainUrl + "responses/week2", mainUrl + "responses/week3", mainUrl + "responses/week4"];
+
+var skipTags = { 'a': 1, 'style': 1, 'script': 1, 'iframe': 1 };
+
+// find text nodes to apply replFn to
+function findKW(el,term,replFn){
+    var child, tag;
+
+    for (var i = el.childNodes.length - 1; i >= 0; i--) {
+        child = el.childNodes[i];
+
+
+        if (child.nodeType == 1) { // ELEMENT_NODE
+            tag = child.nodeName.toLowerCase();
+            if (!(tag in skipTags)) {
+                findKW(child, term, replFn);
+            }
+        }
+        else if (child.nodeType == 3) { // TEXT_NODE
+            replaceKW(child, term, replFn);
+        }
+    }
+}
+
+// replace terms in text according to replFn
+function replaceKW( text, term, replFn ) {
+    var match,
+        matches = [];
+
+    while (match = term.exec(text.data)) {
+        matches.push(match);
+    }
+    for (var i = matches.length - 1; i >= 0; i--) {
+        match = matches[i];
+
+        // cut out the text node to replace
+        text.splitText(match.index);
+        text.nextSibling.splitText(match[1].length);
+        text.parentNode.replaceChild(replFn(match[1]), text.nextSibling);
+    }
+};
+
+function findWords(replTerm, linkTerm){
+    findKW(document.body, new RegExp('\\b(' + replTerm + ')\\b', 'g'),
+        function (match) {
+            var link = document.createElement('a');
+            // link.href = 'http://www.cricinfo.com';
+            link.href = linkTerm;
+            link.innerHTML = match;
+            return link;
+        }
+    );
+}
+
+// Got loads of help from here
+// Real shoutout to these guys
+// http://stackoverflow.com/questions/8949445/javascript-bookmarklet-to-replace-text-with-a-link
+
 // This is based on the millennials to snake people chrome extension
 // Look here for more help: https://developer.mozilla.org/en/docs/Web/API/MutationObserver
+for (var i = 0; i < arrayOfWords.length; i++){
+    findWords(arrayOfWords[i], arrayOfLinks[i]);
+}
 walk(document.body);
 observer.observe(document.body,config);
