@@ -18,11 +18,17 @@
 	"permissions": ["tabs"],
 
 	"icons": {
-
+		"16": "templetoilet-sqr-16.png",
+		"48": "templetoilet-sqr-48.png",
+		"128": "templetoilet-sqr-128.png"
   	},
 
   	"browser_action":{
     	"name":"Temples to Toilets",
-    	"default_title": "Temples to Toilets"
+    	"default_title": "Temples to Toilets",
+    	"default_icon": {
+    		"19": "templetoilet-sqr-19.png",
+    		"38": "templetoilet-sqr-38.png"
+    	}
   }
 }
