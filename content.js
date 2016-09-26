@@ -66,7 +66,7 @@ var observer = new MutationObserver(function(mutations){
     mutations.forEach(function(mutation){
         // console.log(mutation.type);
         for (var i = 0; i < arrayOfWords.length; i++){
-           findWords(arrayOfWords[i], arrayOfLinks[i]);
+           findWords(arrayOfWords[i]);
         }        
         walk(document.body);
     });
@@ -80,11 +80,13 @@ var config = {
 }
 
 // don't replace text within these tags
-var arrayOfWords = ["Temple", "Home", "Weather", "Privacy", "Careers"];
-var mainUrl = "http://139.59.22.162/";
-var arrayOfLinks = [mainUrl, mainUrl + "responses/home", mainUrl + "responses/home", mainUrl + "responses/week1",
-                    mainUrl + "responses/week2", mainUrl + "responses/week3", mainUrl + "responses/week4"];
-
+var arrayOfWords = ["Temple", "temple", "TEMPLE",
+                    "Home", "home", "HOME",
+                    "Weather", "weather", "WEATHER",
+                    "Privacy", "privacy", "PRIVACY",
+                    "Careers", "careers", "CAREERS",
+                    "Jobs", "jobs", "JOBS",
+                    "Ads", "ads", "ADS"];
 var skipTags = { 'a': 1, 'style': 1, 'script': 1, 'iframe': 1 };
 
 // find text nodes to apply replFn to
@@ -125,12 +127,11 @@ function replaceKW( text, term, replFn ) {
     }
 };
 
-function findWords(replTerm, linkTerm){
+function findWords(replTerm){
     findKW(document.body, new RegExp('\\b(' + replTerm + ')\\b', 'g'),
         function (match) {
             var link = document.createElement('a');
-            // link.href = 'http://www.cricinfo.com';
-            link.href = linkTerm;
+            link.href = 'http://www.cricinfo.com';
             link.innerHTML = match;
             return link;
         }
@@ -144,7 +145,7 @@ function findWords(replTerm, linkTerm){
 // This is based on the millennials to snake people chrome extension
 // Look here for more help: https://developer.mozilla.org/en/docs/Web/API/MutationObserver
 for (var i = 0; i < arrayOfWords.length; i++){
-    findWords(arrayOfWords[i], arrayOfLinks[i]);
+    findWords(arrayOfWords[i]);
 }
 walk(document.body);
 observer.observe(document.body,config);
