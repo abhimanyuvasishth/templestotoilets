@@ -16,7 +16,7 @@ Jobs/Careers -> Unemployment
 
 
 
-Privacy -> Exposed
+Privacy -> Exposed Data
 
 
 
