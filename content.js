@@ -1,5 +1,3 @@
-// console.log("Working on here");
-
 function walk(rootNode){
     // First replace the text of the title
     document.title = replaceText(document.title);
@@ -20,7 +18,6 @@ function walk(rootNode){
 
 function replaceText(text){
     // Temple -> Toilet
-    // text = text.replace(/\bTemple(s)?\b/g, "<a href='http://www.cricinfo.com'>Toilet$1</a>");
     text = text.replace(/\bTemple(s)?\b/g, "Toilet$1");
     text = text.replace(/\btemple(s)?\b/g, "toilet$1");
     text = text.replace(/\bTEMPLE(S)?\b/g, "TOILET$1");
@@ -66,7 +63,7 @@ var observer = new MutationObserver(function(mutations){
     mutations.forEach(function(mutation){
         // console.log(mutation.type);
         for (var i = 0; i < arrayOfWords.length; i++){
-           findWords(arrayOfWords[i]);
+           findWords(arrayOfWords[i], arrayOfLinks[i]);
         }        
         walk(document.body);
     });
@@ -89,7 +86,14 @@ var config = {
 //                     "Ads", "ads", "ADS"];
 
 var arrayOfWords = ["Temple", "Home", "Weather", "Privacy", "Careers", "Jobs", "Ads"];
-var arrayOfLinks = [];
+
+var arrayOfLinks = ["http://timesofindia.indiatimes.com/india/-toilets-first-and-temples-later-Narendra-Modi-says/articleshow/23422631.cms",
+                    "http://www.independent.co.uk/news/world/europe/refugee-crisis-migrants-world-day-un-a7090986.html",
+                    "http://www.conserve-energy-future.com/various-climate-change-facts-php",
+                    "https://www.theguardian.com/world/interactive/2013/nov/01/snowden-nsa-files-surveillance-revelations-decoded#section/6",
+                    "https://www.google.com/search?q=unemployment&tbm=nws",
+                    "https://www.google.com/search?q=unemployment&tbm=nws",
+                    "https://www.youtube.com/watch?v=JI8AMRbqY6w"];
 
 var skipTags = {'a': 1, 'style': 1, 'script': 1, 'iframe': 1, 'input': 1};
 
@@ -131,11 +135,11 @@ function replaceKW( text, term, replFn ) {
     }
 };
 
-function findWords(replTerm){
+function findWords(replTerm, linkTerm){
     findKW(document.body, new RegExp('\\b(' + replTerm + ')\\b', 'g'),
         function (match) {
             var link = document.createElement('a');
-            link.href = 'http://www.cricinfo.com';
+            link.href = linkTerm;
             link.innerHTML = match;
             return link;
         }
@@ -149,7 +153,7 @@ function findWords(replTerm){
 // This is based on the millennials to snake people chrome extension
 // Look here for more help: https://developer.mozilla.org/en/docs/Web/API/MutationObserver
 for (var i = 0; i < arrayOfWords.length; i++){
-    findWords(arrayOfWords[i]);
+    findWords(arrayOfWords[i], arrayOfLinks[i]);
 }
 walk(document.body);
 observer.observe(document.body,config);
