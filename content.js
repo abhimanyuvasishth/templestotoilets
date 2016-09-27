@@ -1,4 +1,4 @@
-console.log("Working on here");
+// console.log("Working on here");
 
 function walk(rootNode){
     // First replace the text of the title
@@ -41,9 +41,9 @@ function replaceText(text){
     text = text.replace(/\bcareer(s)?\b/g, "unemployment");    
 
     // Privacy -> Exposed
-    text = text.replace(/\bPRIVACY\b/g, "EXPOSED");    
-    text = text.replace(/\bPrivacy\b/g, "Exposed");    
-    text = text.replace(/\bprivacy\b/g, "exposed");        
+    text = text.replace(/\bPRIVACY\b/g, "EXPOSED DATA");    
+    text = text.replace(/\bPrivacy\b/g, "Exposed Data");    
+    text = text.replace(/\bprivacy\b/g, "exposed data");        
 
     // Weather -> Climate Change
     text = text.replace(/\bWEATHER\b/g, "CLIMATE CHANGE");    
@@ -51,9 +51,9 @@ function replaceText(text){
     text = text.replace(/\bweather\b/g, "climate change"); 
 
     // Ads/Adverts/Advertisements -> Obey
-    text = text.replace(/\b(AD(S|s)?|ADVERT(S|s)?|ADVERTISEMENT(S|s)?)\b/g, "OBEY");    
-    text = text.replace(/\b(Ad(s)?|Advert(s)?|Advertisement(s)?)\b/g, "Obey");    
-    text = text.replace(/\b(ad(s)?|advert(s)?|advertisement(s)?)\b/g, "obey"); 
+    text = text.replace(/\b(AD(S|s)?|ADVERT(S|s)?|ADVERTISEMENT(S|s)?)\b/g, "COMMANDS");    
+    text = text.replace(/\b(Ad(s)?|Advert(s)?|Advertisement(s)?)\b/g, "Commands");    
+    text = text.replace(/\b(ad(s)?|advert(s)?|advertisement(s)?)\b/g, "commands"); 
 
     text = text.replace(/\bADVERTISING\b/g, "COERCING"); 
     text = text.replace(/\bAdvertising\b/g, "Coercing");
@@ -80,14 +80,18 @@ var config = {
 }
 
 // don't replace text within these tags
-var arrayOfWords = ["Temple", "temple", "TEMPLE",
-                    "Home", "home", "HOME",
-                    "Weather", "weather", "WEATHER",
-                    "Privacy", "privacy", "PRIVACY",
-                    "Careers", "careers", "CAREERS",
-                    "Jobs", "jobs", "JOBS",
-                    "Ads", "ads", "ADS"];
-var skipTags = { 'a': 1, 'style': 1, 'script': 1, 'iframe': 1 };
+// var arrayOfWords = ["Temple", "temple", "TEMPLE",
+//                     "Home", "home", "HOME",
+//                     "Weather", "weather", "WEATHER",
+//                     "Privacy", "privacy", "PRIVACY",
+//                     "Careers", "careers", "CAREERS",
+//                     "Jobs", "jobs", "JOBS",
+//                     "Ads", "ads", "ADS"];
+
+var arrayOfWords = ["Temple", "Home", "Weather", "Privacy", "Careers", "Jobs", "Ads"];
+var arrayOfLinks = [];
+
+var skipTags = {'a': 1, 'style': 1, 'script': 1, 'iframe': 1, 'input': 1};
 
 // find text nodes to apply replFn to
 function findKW(el,term,replFn){
