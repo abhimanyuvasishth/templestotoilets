@@ -24,7 +24,7 @@ Weather -> Climate Change
 
 
 
-Ads -> Obey
+Ads -> Commands
 
 
 
