@@ -4,7 +4,7 @@ made by [Chuksy](https://github.com/chukwuyem) and [Abhimanyu](https://github.co
 
 Subtly replaces words on your news feed to keep you updated with global issues.
 
-*Get our extension on the [chrome web store](https://chrome.google.com/webstore/search/toilets%20to%20toilets).*
+*Get our extension on the [chrome web store](https://chrome.google.com/webstore/detail/temples-to-toilets/abbblbikkckjkkajebgjofenlelkamhf).*
 
 ## Some examples
 
