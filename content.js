@@ -59,12 +59,9 @@ function replaceText(text){
 	return text;
 }
 
+// Only replace text on mutation because it takes too long to load pages otherwise.
 var observer = new MutationObserver(function(mutations){
-    mutations.forEach(function(mutation){
-        // console.log(mutation.type);
-        for (var i = 0; i < arrayOfWords.length; i++){
-           findWords(arrayOfWords[i], arrayOfLinks[i]);
-        }        
+    mutations.forEach(function(mutation){       
         walk(document.body);
     });
 });
@@ -76,21 +73,12 @@ var config = {
     subtree: true
 }
 
-// don't replace text within these tags
-// var arrayOfWords = ["Temple", "temple", "TEMPLE",
-//                     "Home", "home", "HOME",
-//                     "Weather", "weather", "WEATHER",
-//                     "Privacy", "privacy", "PRIVACY",
-//                     "Careers", "careers", "CAREERS",
-//                     "Jobs", "jobs", "JOBS",
-//                     "Ads", "ads", "ADS"];
-
 var arrayOfWords = ["Temple", "Home", "Weather", "Privacy", "Careers", "Jobs", "Ads"];
 
 var arrayOfLinks = ["http://timesofindia.indiatimes.com/india/-toilets-first-and-temples-later-Narendra-Modi-says/articleshow/23422631.cms",
-                    "http://www.independent.co.uk/news/world/europe/refugee-crisis-migrants-world-day-un-a7090986.html",
+                    "http://www.unhcr.org/news/latest/2016/6/5763b65a4/global-forced-displacement-hits-record-high.html",
                     "http://www.conserve-energy-future.com/various-climate-change-facts-php",
-                    "https://www.theguardian.com/world/interactive/2013/nov/01/snowden-nsa-files-surveillance-revelations-decoded#section/6",
+                    "https://www.theguardian.com/world/interactive/2013/nov/01/snowden-nsa-files-surveillance-revelations-decoded",
                     "https://www.google.com/search?q=unemployment&tbm=nws",
                     "https://www.google.com/search?q=unemployment&tbm=nws",
                     "https://www.youtube.com/watch?v=JI8AMRbqY6w"];
@@ -127,7 +115,6 @@ function replaceKW( text, term, replFn ) {
     }
     for (var i = matches.length - 1; i >= 0; i--) {
         match = matches[i];
-
         // cut out the text node to replace
         text.splitText(match.index);
         text.nextSibling.splitText(match[1].length);
