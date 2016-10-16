@@ -1,7 +1,7 @@
 {
 	"name": "Temples to Toilets",
 	"manifest_version": 2,
-	"version": "1.2.0",
+	"version": "1.2.1",
 
 	"content_scripts": [{
 		"matches": [ "<all_urls>" ],
